@@ -6,11 +6,11 @@ export default function FirstPost(){
     return(
         <Layout>
             <Head>
-                <title> First Post </title>
+                <title> Next.js Sample </title>
             </Head>
             <h1> First Post </h1>
             <h2>
-                <Link href="/"><a> Back To Home </a></Link>
+                <Link href="../alert/alert"> Alert </Link>
             </h2>
         </Layout>
     )

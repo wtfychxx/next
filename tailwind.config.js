@@ -1,12 +1,10 @@
+// tailwind.config.js
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
-  purge: false,
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
-};
+    purge: [
+      // Use *.tsx if using TypeScript
+      './pages/**/*.js',
+      './components/**/*.js'
+    ]
+    // ...
+  }
+  
