@@ -1,45 +1,48 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
-import { getSortedPostsData } from '../lib/posts'
+import Head from "next/head";
+import Layout, { siteTitle } from "../components/layout";
+import utilStyles from "../styles/utils.module.css";
+import Link from "next/link";
+import { getSortedPostsData } from "../lib/posts";
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+  const allPostsData = getSortedPostsData();
   return {
     props: {
-      allPostsData
-    }
-  }
+      allPostsData,
+    },
+  };
 }
 
-export default function Home({allPostsData}) {
+export default function Home(props) {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title> {siteTitle} </title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>[ Hello this is my first project with nextjs framework ]</p>
+        <p> [Hello this is my first project with nextjs framework] </p>
         <p>
-        (This is a sample website - you’ll be building a site like this on{' '}
-          <Link href="/posts/first-post"><a>our Next.js tutorial</a></Link>.)
+          (This is a sample website - you’ ll be building a site like this on
+          <Link href="/posts/first-post">
+            <a> our Next.js tutorial </a>
+          </Link>
+          .)
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}> Blog </h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {props.allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Link href={`/posts/${id}`}>
+                <a>{title}</a>
+              </Link>
               <br />
-              {id}
-              <br />
-              {date}
+              <small className={utilStyles.lightText}>{date}</small>
             </li>
           ))}
         </ul>
       </section>
     </Layout>
-  )
+  );
 }
